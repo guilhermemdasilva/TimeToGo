@@ -50,8 +50,10 @@ public class HomeActivity extends FragmentActivity implements TimePickerDialogCl
         });
         int outHour = (entranceHour + workHour + 1);
         int outMinute = (entranceMinute + workMinute);
-        if (outMinute > 60)
+        if (outMinute > 60) {
             outMinute = entranceMinute + workMinute - 60;
+            outHour++;
+        }
         if (outHour > 24)
             outHour -= 24;
         timeToGoTV.setText(twentyFourHourTime(outHour, outMinute));
