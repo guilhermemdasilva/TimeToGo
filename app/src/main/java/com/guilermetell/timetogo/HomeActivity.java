@@ -1,10 +1,6 @@
 package com.guilermetell.timetogo;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
@@ -14,8 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.util.Calendar;
 
 public class HomeActivity extends FragmentActivity implements TimePickerDialogCloseListener {
 
