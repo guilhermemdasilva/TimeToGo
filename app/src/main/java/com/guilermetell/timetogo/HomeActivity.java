@@ -13,11 +13,13 @@ import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.romainpiel.shimmer.Shimmer;
@@ -25,8 +27,10 @@ import com.romainpiel.shimmer.ShimmerTextView;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 public class HomeActivity extends FragmentActivity implements TimePickerDialogCloseListener {
 
@@ -39,6 +43,7 @@ public class HomeActivity extends FragmentActivity implements TimePickerDialogCl
     private Button entranceBtn;
     private Button workHoursBtn;
     private Button cameraWorkBtn;
+    private Button toggleDayNightBtn;
     private ShimmerTextView timeToGoTV;
     private Shimmer shimmer;
 
@@ -93,6 +98,13 @@ public class HomeActivity extends FragmentActivity implements TimePickerDialogCl
         entranceBtn = (Button) findViewById(R.id.entrance_btn);
         workHoursBtn = (Button) findViewById(R.id.workhours_btn);
         timeToGoTV = (ShimmerTextView) findViewById(R.id.timeToGo);
+        toggleDayNightBtn = (Button) findViewById(R.id.toggleDayNightBtn);
+        toggleDayNightBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleDayNight();
+            }
+        });
         cameraWorkBtn = (Button) findViewById(R.id.camerawork_btn);
         cameraWorkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,6 +180,21 @@ public class HomeActivity extends FragmentActivity implements TimePickerDialogCl
         bundle.putString("id", id);
         newFragment.setArguments(bundle);
         newFragment.show(getSupportFragmentManager(), "timePicker");
+    }
+
+    private void toggleDayNight() {
+        LinearLayout layout = (LinearLayout) findViewById(R.id.activity_home);
+        ArrayList<Integer> colors = new ArrayList<>();
+        colors.add(ContextCompat.getColor(this, R.color.black));
+        colors.add(ContextCompat.getColor(this, R.color.blue));
+        colors.add(ContextCompat.getColor(this, R.color.orange));
+        colors.add(ContextCompat.getColor(this, R.color.green));
+        colors.add(ContextCompat.getColor(this, R.color.purple));
+        colors.add(ContextCompat.getColor(this, R.color.red));
+        Random randomGenerator = new Random();
+        int index = randomGenerator.nextInt(colors.size());
+        int color = colors.get(index);
+        layout.setBackgroundColor(color);
     }
 
     @Override

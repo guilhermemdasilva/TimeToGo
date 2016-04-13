@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -79,6 +80,16 @@
                 android:textStyle="bold"
                 android:textColor="@color/brightorange"
                 app:reflectionColor="@color/grey"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+            <Button
+                android:id="@+id/toggleDayNightBtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:onClick="toggleDayNight"
+                android:background="@drawable/ic_launcher"
+                android:layout_gravity="end"/>
         </LinearLayout>
     </ScrollView>
 
