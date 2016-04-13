@@ -18,8 +18,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.romainpiel.shimmer.Shimmer;
+import com.romainpiel.shimmer.ShimmerTextView;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -37,7 +39,8 @@ public class HomeActivity extends FragmentActivity implements TimePickerDialogCl
     private Button entranceBtn;
     private Button workHoursBtn;
     private Button cameraWorkBtn;
-    private TextView timeToGoTV;
+    private ShimmerTextView timeToGoTV;
+    private Shimmer shimmer;
 
     private PendingIntent pendingIntent;
 
@@ -89,7 +92,7 @@ public class HomeActivity extends FragmentActivity implements TimePickerDialogCl
         setContentView(R.layout.activity_home);
         entranceBtn = (Button) findViewById(R.id.entrance_btn);
         workHoursBtn = (Button) findViewById(R.id.workhours_btn);
-        timeToGoTV = (TextView) findViewById(R.id.timeToGo);
+        timeToGoTV = (ShimmerTextView) findViewById(R.id.timeToGo);
         cameraWorkBtn = (Button) findViewById(R.id.camerawork_btn);
         cameraWorkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +109,8 @@ public class HomeActivity extends FragmentActivity implements TimePickerDialogCl
     @Override
     protected void onResume() {
         super.onResume();
+        shimmer = new Shimmer();
+        shimmer.start(timeToGoTV);
         Intent alarmIntent = new Intent(this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
     }
